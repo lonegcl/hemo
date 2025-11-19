@@ -12,7 +12,7 @@
           <p class="hero-description">专业金融服务，助力企业成长与发展</p>
           <div class="hero-buttons">
             <router-link to="/services" class="btn">了解服务</router-link>
-            <router-link to="/contact" class="btn btn-outline">联系我们</router-link>
+            <router-link to="/contact" class="btn">联系我们</router-link>
           </div>
         </div>
         <div class="hero-image">
@@ -252,16 +252,18 @@ const testimonials = ref([
   overflow: hidden;
 }
 
+/* 聚光灯效果 */
 .hero::before {
   content: '';
   position: absolute;
   top: -50%;
   right: -20%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 70%);
   border-radius: 50%;
-  animation: float 20s ease-in-out infinite;
+  animation: spotlightMove 20s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .hero::after {
@@ -269,11 +271,31 @@ const testimonials = ref([
   position: absolute;
   bottom: -30%;
   left: -10%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 70%);
   border-radius: 50%;
-  animation: float 15s ease-in-out infinite reverse;
+  animation: spotlightMove 15s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes spotlightMove {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(50px, -30px) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-30px, 50px) scale(0.9);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translate(30px, 30px) scale(1.05);
+    opacity: 0.75;
+  }
 }
 
 @keyframes float {
@@ -833,6 +855,21 @@ const testimonials = ref([
   color: white;
   position: relative;
   overflow: hidden;
+}
+
+/* CTA 聚光灯效果 */
+.cta-home::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: spotlightMove 20s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .cta-home::before {

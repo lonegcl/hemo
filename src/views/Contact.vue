@@ -131,6 +131,42 @@
   color: white;
   padding: 60px 0;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 聚光灯效果 */
+.contact-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: spotlightMove 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes spotlightMove {
+  0%, 100% {
+    transform: translateX(-50%) translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateX(-50%) translate(50px, -30px) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) translate(-30px, 50px) scale(0.9);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateX(-50%) translate(30px, 30px) scale(1.05);
+    opacity: 0.75;
+  }
 }
 
 .hero-content {

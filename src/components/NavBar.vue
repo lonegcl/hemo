@@ -38,15 +38,42 @@ const closeMenu = () => {
 
 <style scoped>
 .navbar {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--gradient-primary);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Navbar 聚光灯效果 */
+.navbar::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  right: 20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: navbarSpotlight 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes navbarSpotlight {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-100px, 100px);
+    opacity: 0.6;
+  }
 }
 
 .navbar::before {
@@ -75,10 +102,7 @@ const closeMenu = () => {
   cursor: pointer;
   font-size: 1.5rem;
   font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: white;
   transition: transform 0.3s ease;
 }
 
@@ -89,7 +113,9 @@ const closeMenu = () => {
 .logo-icon {
   width: 48px;
   height: 48px;
-  background: var(--gradient-primary);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: white;
   border-radius: 12px;
   display: flex;
@@ -97,7 +123,8 @@ const closeMenu = () => {
   justify-content: center;
   font-weight: 700;
   font-size: 1.25rem;
-  box-shadow: var(--shadow-colored);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -127,7 +154,7 @@ const closeMenu = () => {
 
 .nav-menu a {
   text-decoration: none;
-  color: var(--text-medium);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -144,14 +171,14 @@ const closeMenu = () => {
   transform: translateX(-50%) scaleX(0);
   width: 100%;
   height: 2px;
-  background: var(--gradient-primary);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 2px;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-menu a:hover,
 .nav-menu a.router-link-active {
-  color: var(--primary-color);
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -173,7 +200,7 @@ const closeMenu = () => {
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background: var(--text-dark);
+  background: white;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -188,10 +215,10 @@ const closeMenu = () => {
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--bg-white);
+    background: var(--gradient-primary);
     flex-direction: column;
     padding: 1rem 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
